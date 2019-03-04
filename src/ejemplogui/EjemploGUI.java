@@ -4,6 +4,8 @@ package ejemplogui;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -27,7 +29,7 @@ public class EjemploGUI extends Application {
     @Override
 
     public void start(Stage primaryStage) throws FileNotFoundException {
-        Button bt1 = new Button("Button 1");
+        /*Button bt1 = new Button("Button 1");
         Button bt2 = new Button ("Button 2");
         Label label1 = new Label ("Search");
         FileInputStream input = new FileInputStream("save1.png");
@@ -94,6 +96,39 @@ public class EjemploGUI extends Application {
         vlayout.getChildren().add(gridpane);
         
         Scene scene = new Scene(vlayout, 300, 300); //Scene contiene a button; (200, 250) tamaño de la ventana
+        primaryStage.setTitle("MyJavaFX");
+        primaryStage.setScene(scene);//A stage le mando scene
+        primaryStage.show(); } 
+        */
+
+        GridPane pane = new GridPane();
+        HBox hlayout = new HBox();
+        Button bt1 = new Button("Ok");
+        Button bt2 = new Button("List");
+        hlayout.getChildren().add(bt1);
+        hlayout.getChildren().add(bt2);
+        pane.setAlignment(Pos.CENTER);
+        pane.add(new Label("BIENVENIDO"), 0, 0);
+        pane.add(new Label("First Name:"), 0, 1);
+        TextField t1 = new TextField();
+        TextField t2 = new TextField();
+        pane.add(t1, 1, 1);
+        pane.add(new Label("Last Name:"), 0, 2);
+        pane.add(t2, 1, 2);
+        pane.add(hlayout,1,3);
+        pane.setHgap(5.5);
+        pane.setVgap(5.5);
+        //Primera forma de generar evento
+        bt1.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e){
+                String nombre = t1.getText();
+                System.out.println("El nombre "+nombre+" ha sido guardado exitosamente");
+            }
+        });
+        //Segunda forma de generar evento
+        bt2.setOnAction(new JustRight());
+        
+        Scene scene = new Scene(pane, 300, 300); //Scene contiene a button; (200, 250) tamaño de la ventana
         primaryStage.setTitle("MyJavaFX");
         primaryStage.setScene(scene);//A stage le mando scene
         primaryStage.show(); } 
